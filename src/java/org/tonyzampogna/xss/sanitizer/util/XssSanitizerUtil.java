@@ -60,7 +60,9 @@ public class XssSanitizerUtil {
 		if (value != null) {
 			// NOTE: It's highly recommended to use the ESAPI library and uncomment the following line to
 			// avoid encoded attacks.
-			value = ESAPI.encoder().canonicalize(value);
+			// There is an issue in how the default encoder handles URLs. 
+			// Refer http://code.google.com/p/owasp-esapi-java/issues/detail?id=258
+			//value = ESAPI.encoder().canonicalize(value);
 
 			// Avoid null characters
 			value = value.replaceAll("\0", "");
